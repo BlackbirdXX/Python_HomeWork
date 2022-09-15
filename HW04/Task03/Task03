@@ -1,0 +1,62 @@
+# 3 - В файле, содержащем фамилии студентов и их оценки, изменить на прописные буквы фамилии тех студентов, которые имеют средний балл более «4».
+# Пример:
+# Волков Андрей 5
+# Наталья Тарасова 5
+# Фредди Меркури 3
+# Денис Байцуров 4
+
+# Программа выдаст:
+# ВОЛКОВ АНДРЕЙ 5
+# НАТАЛЬЯ ТАРАСОВА 5
+# Фредди Меркури 3
+# Денис Байцуров 4
+
+
+import os
+import colorama
+from colorama import Fore, Back, Style
+colorama.init
+os.system("cls")
+
+print(Fore.YELLOW + 'Программа, которая заменяет в файле на заглавные буквы фамилии тех студентов, которые имеют средний балл более «4»')
+
+path_in = 'E:/Learning/Python/PythonHomeWork/HW04/Task03/text.txt'
+path_out = 'E:/Learning/Python/PythonHomeWork/HW04/Task03/out.txt'
+
+
+with open(path_in, 'w+',  encoding= 'utf-8') as data:
+    data.write('Кори Тейлор 5\n')
+    data.write('Шон Крейен 5\n')
+    data.write('Пол Грей  3\n')
+    data.write('Джои Джордисон 5\n')
+    data.write('Сид Уилсон 4\n')
+    data.write('Мик Томсон 5\n')
+    data.write('Джеймс Рут 3\n')
+
+with open(path_in, encoding= 'utf-8') as data:
+    for line in data:
+            print(line)
+
+
+file_in = open(path_in, "r+", encoding= 'utf-8')
+file_out = open(path_out, "w",encoding= 'utf-8')
+for line in file_in:
+    if '5' in line:
+        temp = line
+        temp = temp.upper()
+        file_out.write(temp)
+    else:
+        file_out.write(line)
+file_in.close()
+file_out.close()
+
+def replace_file(path_out, path_in):
+    '''
+    Функция для замены файла.
+    '''
+    os.remove(path_in)
+    os.rename(path_out, path_in)
+
+replace_file(path_out, path_in)
+
+print(Style.RESET_ALL)
