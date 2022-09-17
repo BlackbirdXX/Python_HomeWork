@@ -9,7 +9,7 @@ from colorama import Fore, Back, Style
 colorama.init
 os.system("cls")
 
-alphabet =  'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'
+alphabet =  'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя,.! '
 path_in = 'E:/Learning/Python/PythonHomeWork/HW04/Task04/text.txt'
 
 print(Fore.YELLOW + 'Программа, которая записывает в файл шифрованный текст, а также функцию, которая спрашивает ключ, считывает текст и дешифровывает его.')
@@ -27,7 +27,10 @@ def number_input(input_string):
             print(Fore.RED + "Введено неверное значение. Только числа!!!")
 
 step = number_input(Fore.WHITE + 'Задайте шаг смещения : ')
-message = ('Пришел увидел победил').upper()
+if step > 70:
+    step = step%70
+
+message = ('Пришел, увидел, победил!')
 print(message)
 
 def encryption(message, step):
@@ -38,10 +41,11 @@ def encryption(message, step):
     for i in message:
         position = alphabet.find(i)
         code_position = position + step
-        if i in alphabet:
-            result += alphabet[code_position]
+        if code_position > 69:
+            code_position -= 70
+            result += alphabet[code_position]  
         else:
-            result += i
+            result += alphabet[code_position]
     return result
 encrypted_message = encryption(message, step)
 print(encrypted_message)
@@ -52,23 +56,26 @@ with open(path_in, 'w+',  encoding= 'utf-8') as data:
 with open(path_in, 'r',  encoding= 'utf-8') as data:
     encrypted_message_read = data.read()
 
-def encryption(encrypted_message_read, step):
+def de_encryption(encrypted_message_read, step2):
     '''
-    Функция, которая шифрует сообщение Шифром Цезаря.
+    Функция, которая дешифрует сообщение из Шифра Цезаря.
     '''
     result = ''
     for i in encrypted_message_read:
         position = alphabet.find(i)
         code_position = position - step2
-        if i in alphabet:
-            result += alphabet[code_position]
+        if code_position > 69:
+            code_position -= 70
+            result += alphabet[code_position]  
         else:
-            result += i
+            result += alphabet[code_position]
     return result
 
-encrypted_message = encryption(message, step)
-print(encrypted_message)
+step2 = number_input('Введите ключ дешифровки : ')
+if step2 > 70:
+    step2 = step%70
 
-print(encrypted_message_read)
-step2 = number_input(Fore.WHITE + 'Задайте ключ дешифровки : ')
+de_encrypted_message = de_encryption(encrypted_message_read, step2)
+
+print(de_encrypted_message)
 print(Style.RESET_ALL)
