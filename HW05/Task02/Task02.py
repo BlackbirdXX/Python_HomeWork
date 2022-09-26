@@ -262,3 +262,14 @@ def game():
         pve_mode(roll_result, candies)
 
 game()
+
+# os.system("cls")
+# print(Fore.YELLOW + f"Конфет осталось {candies} штук.")
+# print(Fore.GREEN + f"Ход {gamer_name(player, "родительный падеж")}")
+# move = players_move()
+# print(f"{player} взял {move} конфет.")
+# candies -= move
+# print(Style.RESET_ALL)
+# roll_result = False if roll_result else True
+# time.sleep(1)
+# player = "Игрок 1" if player == "Игрок 2" else "Игрок 1"
