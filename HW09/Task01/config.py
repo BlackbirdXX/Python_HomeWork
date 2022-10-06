@@ -1,0 +1,4 @@
+# TrainingDummyBot
+
+
+TOKEN = '5703195370:AAHtX-bPni1EfC8ofFLVNqpNH7_72yO1Ifs'
